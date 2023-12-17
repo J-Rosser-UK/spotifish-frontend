@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, Card, Grid, User, Spacer, Button, Divider } from '@geist-ui/react';
 // import User from '../components/user';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,8 @@ const WhiteTextUser = styled(User)`
 `;
 // Main Profile component
 const ProfileScreen = () => {
+
+
   // Example user data
   const profile = {
     profile_handle: 'user123',
@@ -22,26 +24,34 @@ const ProfileScreen = () => {
     profile_following_counter: 456
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  window.addEventListener('resize', handleResize);
 
   return (
     <div style={{ padding: '20px'}}>
       <div style={{
-        height: '100px',
+        height: isMobile ? 'auto' : '100px',
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: isMobile ? 'flex-start' : 'space-between',
         padding: '20px',
-        
       }}>
-        <div style={{transform: 'scale(3)', margin: "0 0 0 90px"}}>
+        <div style={{transform: 'scale(3)', margin: isMobile ? "0" : "0 0 0 90px"}}>
           <WhiteTextUser src={profile.profile_picture} name={profile.profile_name} theme="dark" style={{color: "white"}}>
             <User.Link href={`https://twitter.com/${profile.profile_handle}`} style={{ color: 'white' }}>@{profile.profile_handle}</User.Link>
           </WhiteTextUser>
-          
         </div>
-        
-        <div style={{display: 'flex', alignItems: 'center', fontSize: '1.5em'}}> {/* Increase font size and center vertically */}
+        {isMobile && <Spacer/> }
+        {isMobile && <Spacer/> }
+        {isMobile && <Spacer/> }
+        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '1.5em'}}>
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '20px'}}>
             <div>Followers</div>
             <div>{profile.profile_followers_counter}</div>
@@ -51,12 +61,10 @@ const ProfileScreen = () => {
             <div>{profile.profile_following_counter}</div>
           </div>
         </div>
-        
       </div>
       <Text>{profile.profile_description}</Text>
       <Divider/>
     </div>
-    
   );
 };
 

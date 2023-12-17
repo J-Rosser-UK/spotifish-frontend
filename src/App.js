@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import Header from './components/header';
+import Header from './components/Header';
 import HomeScreen from './screens/Home';
 import SearchScreen from './screens/Search';
 import ProfileScreen from './screens/Profile';
