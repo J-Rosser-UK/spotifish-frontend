@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Spotifish",
+  "name": "A React.js frontend to demonstrate a Django Spotify API Clone.",
   "icons": [
     {
       "src": "favicon.ico",

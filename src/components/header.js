@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Button, Divider } from '@geist-ui/react';
+import { Text, Button, Divider, Image } from '@geist-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
@@ -32,7 +32,10 @@ const Header = () => {
     <div style={{
         
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+      <Image src="/logo192.png" alt='spotifish logo' onClick={() => navigate('/')} style={{ height: '40px', margin: "0 10px 0 0", padding:"0 0 7px 0"}}/>
       <Text h4 onClick={() => navigate('/')}>Spotifish</Text>
+      </div>
       {isMobile ? (
         <>
           <Button auto type="secondary" size="large" onClick={toggleMenu}>☰</Button>
